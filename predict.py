@@ -81,7 +81,7 @@ class Predictor(BasePredictor):
             else:
                 extension = file_extention
             
-            if: file_name == '':
+            if file_name == '':
                 file_name = 'Upscayler'
                 
         save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
