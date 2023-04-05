@@ -53,6 +53,11 @@ class Predictor(BasePredictor):
             description="Run GFPGAN face enhancement along with upscaling",
             default=False,
         ),
+        file_extention: str = Input(
+            description="File extention output",
+            choices="auto, jpeg, png",
+            default="auto",
+        ),
     ) -> Path:
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
 
