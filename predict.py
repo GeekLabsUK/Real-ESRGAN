@@ -53,11 +53,17 @@ class Predictor(BasePredictor):
             description="Run GFPGAN face enhancement along with upscaling",
             default=False,
         ),
-        file_extention: str = Input(
-            description="File extention output",
+        # added file extention
+        file_extension: str = Input(
+            description="File extension output",
             choices="auto, jpeg, png",
             default="auto",
         ),
+        # added file name
+        file_name: str = Input(
+            description="Outputs file name",
+        ),
+            
     ) -> Path:
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
 
@@ -70,6 +76,14 @@ class Predictor(BasePredictor):
         else:
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale)
-        save_path = os.path.join(tempfile.mkdtemp(), "output.png")
+            if file_extension == 'auto'
+                extension = extension[1:]
+            else:
+                extension = file_extention
+            
+            if: file_name == ''
+                file_name = 'Upscayler'
+                
+        save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
         cv2.imwrite(save_path, output)
         return Path(save_path)
