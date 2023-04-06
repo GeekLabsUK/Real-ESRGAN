@@ -67,6 +67,17 @@ class Predictor(BasePredictor):
     ) -> Path:
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
 
+        if file_extension == 'auto':
+            # Get the original file extension
+            _, ext = os.path.splitext(str(image))
+            extension = ext[1:]
+        else:
+            extension = file_extension
+        if not file_name:
+            file_name = 'Upscayler'
+        else:
+            file_name = file_name
+            
         if face_enhance:
             print("running with face enhancement")
             self.face_enhancer.upscale = scale
@@ -76,17 +87,6 @@ class Predictor(BasePredictor):
         else:
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale)
-           
-            if file_extension == 'auto':
-                # Get the original file extension
-                _, ext = os.path.splitext(str(image))
-                extension = ext[1:]
-            else:
-                extension = file_extension
-            if not file_name:
-                file_name = 'Upscayler'
-            else:
-                file_name = file_name
                 
             save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
             cv2.imwrite(save_path, output)
