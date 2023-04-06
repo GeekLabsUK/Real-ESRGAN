@@ -62,7 +62,10 @@ class Predictor(BasePredictor):
         # added file name
         file_name: str = Input(
             description="Outputs file name",
+            default='',
         ),
+
+        
             
     ) -> Path:
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
@@ -73,6 +76,7 @@ class Predictor(BasePredictor):
             extension = ext[1:]
         else:
             extension = file_extension
+
         if file_name == '':
             file_name = 'Upscayler'
         else:
