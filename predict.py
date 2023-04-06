@@ -37,7 +37,7 @@ class Predictor(BasePredictor):
         )
         self.face_enhancer = GFPGANer(
             model_path=GFPGAN_PATH,
-            upscale=None,
+            upscale=2,
             arch="clean",
             channel_multiplier=2,
             bg_upsampler=self.upsampler,
@@ -80,6 +80,13 @@ class Predictor(BasePredictor):
         
         if face_enhance:
             print("running with face enhancement")
+            
+            # Apply the scaling factor directly to the input image
+            if scale != 1:
+                h, w = img.shape[0:2]
+                interpolation = cv2.INTER_AREA if scale < 1 else cv2.INTER_LANCZOS4
+                img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=interpolation)
+                
             self.face_enhancer.upscale = scale           
             _, _, output = self.face_enhancer.enhance(
                 img, has_aligned=False, only_center_face=False, paste_back=True
