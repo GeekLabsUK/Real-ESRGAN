@@ -81,9 +81,8 @@ class Predictor(BasePredictor):
             # Get the original file extension
             _, ext = os.path.splitext(str(image))
             extension = ext[1:]
-            
-            else:
-                extension = file_extension
+        else:
+            extension = file_extension
             
             if file_name == '':
                 file_name = 'Upscayler'
