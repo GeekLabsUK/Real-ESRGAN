@@ -37,7 +37,7 @@ class Predictor(BasePredictor):
         )
         self.face_enhancer = GFPGANer(
             model_path=GFPGAN_PATH,
-            upscale=4,
+            upscale=2,
             arch="clean",
             channel_multiplier=2,
             bg_upsampler=self.upsampler,
@@ -82,7 +82,7 @@ class Predictor(BasePredictor):
             print("running with face enhancement")
             self.face_enhancer.upscale = scale            
             _, _, output = self.face_enhancer.enhance(
-                img, has_aligned=False, only_center_face=False, paste_back=True, upscale=scale
+                img, has_aligned=False, only_center_face=False, paste_back=True
             )
         else:
             print("running without face enhancement")
