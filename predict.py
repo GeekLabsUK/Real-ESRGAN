@@ -62,13 +62,11 @@ class Predictor(BasePredictor):
         # added file name
         file_name: str = Input(
             description="Outputs file name",
-            default='',
+            default="",
         ),
-
-        
             
     ) -> Path:
-        img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)        
+        img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
 
         if face_enhance:
             print("running with face enhancement")
@@ -81,17 +79,14 @@ class Predictor(BasePredictor):
             output, _ = self.upsampler.enhance(img, outscale=scale)
 
             if file_extension == 'auto':
-                # Get the original file extension
                 _, ext = os.path.splitext(str(image))
                 extension = ext[1:]
             else:
                 extension = file_extension
-
+            
             if file_name == '':
                 file_name = 'Upscayler'
-            else:
-                file_name = file_name
                 
-            save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
-            cv2.imwrite(save_path, output)
-            return Path(save_path)
+        save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
+        cv2.imwrite(save_path, output)
+        return Path(save_path)
