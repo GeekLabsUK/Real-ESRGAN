@@ -37,7 +37,7 @@ class Predictor(BasePredictor):
         )
         self.face_enhancer = GFPGANer(
             model_path=GFPGAN_PATH,
-            upscale=scale,
+            upscale=netscale,
             arch="clean",
             channel_multiplier=2,
             bg_upsampler=self.upsampler,
@@ -66,7 +66,6 @@ class Predictor(BasePredictor):
         ),
             
     ) -> Path:
-        self.setup(scale)
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED) 
 
         extension = ''
