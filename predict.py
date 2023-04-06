@@ -86,8 +86,8 @@ class Predictor(BasePredictor):
             
             if file_name == '':
                 file_name = 'Upscayler'
-                else:
-                    file_name = file_name
+            else:
+                file_name = file_name
                 
         save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
         cv2.imwrite(save_path, output)
