@@ -69,6 +69,11 @@ class Predictor(BasePredictor):
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
 
         extension = ''
+        if file_extension == 'auto':
+            _, ext = os.path.splitext(str(image))
+            extension = ext[1:]
+        else:
+            extension = file_extension 
         
         if face_enhance:
             print("running with face enhancement")
@@ -79,12 +84,6 @@ class Predictor(BasePredictor):
         else:
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale) 
-            
-            if file_extension == 'auto':
-                _, ext = os.path.splitext(str(image))
-                extension = ext[1:]
-            else:
-                extension = file_extension 
             
             if file_name == '':
                 file_name = 'Upscayler'
