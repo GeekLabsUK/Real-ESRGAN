@@ -83,11 +83,10 @@ class Predictor(BasePredictor):
             extension = ext[1:]
         else:
             extension = file_extension
-            
-           if not file_name:
+        if not file_name:
             file_name = 'Upscayler'
-           else:
-                file_name = file_name
+        else:
+            file_name = file_name
                 
         save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
         cv2.imwrite(save_path, output)
