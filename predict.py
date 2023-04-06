@@ -81,7 +81,7 @@ class Predictor(BasePredictor):
             extension = ''
             
             if file_extension == 'auto':
-                _, ext = os.path.splitext(str(img))
+                _, ext = os.path.splitext(str(image))
                 extension = ext[1:]
             else:
                 extension = file_extension 
@@ -89,6 +89,6 @@ class Predictor(BasePredictor):
             if file_name == '':
                 file_name = 'Upscayler'
                 
-        save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + file_extension)
+        save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
         cv2.imwrite(save_path, output)
         return Path(save_path)
