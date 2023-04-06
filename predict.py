@@ -78,6 +78,7 @@ class Predictor(BasePredictor):
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale)
 
+            extension = ''
             if file_extension == 'auto':
                 _, ext = os.path.splitext(str(image))
                 extension = ext[1:]
