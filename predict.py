@@ -78,7 +78,7 @@ class Predictor(BasePredictor):
             output, _ = self.upsampler.enhance(img, outscale=scale)
             
            if file_extension == 'auto':
-              # Get the original file extension
+            # Get the original file extension
               _, ext = os.path.splitext(str(image))
               extension = ext[1:]
                 
