@@ -37,7 +37,7 @@ class Predictor(BasePredictor):
         )
         self.face_enhancer = GFPGANer(
             model_path=GFPGAN_PATH,
-            upscale=netscale,
+            upscale=None,
             arch="clean",
             channel_multiplier=2,
             bg_upsampler=self.upsampler,
