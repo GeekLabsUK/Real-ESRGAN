@@ -79,7 +79,7 @@ class Predictor(BasePredictor):
             if file_extension == 'auto':
                 extension = extension[1:]
             else:
-                extension = file_extention
+                extension = file_extension
             
             if file_name == '':
                 file_name = 'Upscayler'
