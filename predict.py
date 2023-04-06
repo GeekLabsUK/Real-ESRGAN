@@ -80,10 +80,9 @@ class Predictor(BasePredictor):
         
         if face_enhance:
             print("running with face enhancement")
-            self.face_enhancer.upscale = scale
-            self.upsampler.scale = scale
+            self.face_enhancer.upscale = scale            
             _, _, output = self.face_enhancer.enhance(
-                img, has_aligned=False, only_center_face=False, paste_back=True
+                img, has_aligned=False, only_center_face=False, paste_back=True, scale=scale
             )
         else:
             print("running without face enhancement")
