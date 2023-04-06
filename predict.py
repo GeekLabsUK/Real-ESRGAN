@@ -82,9 +82,9 @@ class Predictor(BasePredictor):
             print("running with face enhancement")
             
             # Apply the scaling factor directly to the input image
-            if scale != 1:
+            if scale != 2:
                 h, w = img.shape[0:2]
-                interpolation = cv2.INTER_AREA if scale < 1 else cv2.INTER_LANCZOS4
+                interpolation = cv2.INTER_AREA if scale < 2 else cv2.INTER_LANCZOS4
                 img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=interpolation)
                 
             self.face_enhancer.upscale = scale           
