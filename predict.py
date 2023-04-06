@@ -46,7 +46,7 @@ class Predictor(BasePredictor):
     def predict(
         self,
         image: Path = Input(description="Input image"),
-        scale: float = Input(
+        scale: int = Input(
             description="Factor to scale image by", ge=0, le=10, default=4
         ),
         face_enhance: bool = Input(
@@ -80,7 +80,7 @@ class Predictor(BasePredictor):
         
         if face_enhance:
             print("running with face enhancement")
-            self.face_enhancer.upscale = int(scale)            
+            self.face_enhancer.upscale = scale           
             _, _, output = self.face_enhancer.enhance(
                 img, has_aligned=False, only_center_face=False, paste_back=True
             )
