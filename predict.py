@@ -78,9 +78,13 @@ class Predictor(BasePredictor):
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale)
             
+            extension = ''
+            
             if file_extension == 'auto':
                 _, ext = os.path.splitext(str(img))
-                file_extension = ext[1:]            
+                extension = ext[1:]
+            else:
+                extension = file_extension 
             
             if file_name == '':
                 file_name = 'Upscayler'
