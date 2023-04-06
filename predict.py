@@ -85,7 +85,7 @@ class Predictor(BasePredictor):
             if scale != 2:
                 h, w = img.shape[0:2]
                 interpolation = cv2.INTER_AREA if scale < 2 else cv2.INTER_LANCZOS4
-                img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=interpolation)
+                img = cv2.resize(img, (int(w * scale / 2), int(h * scale / 2)), interpolation=interpolation)
                 
             self.face_enhancer.upscale = scale           
             _, _, output = self.face_enhancer.enhance(
