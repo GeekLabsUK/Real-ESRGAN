@@ -83,7 +83,7 @@ class Predictor(BasePredictor):
             extension = ext[1:]
         else:
             extension = file_extension
-        if not file_name:
+        if len(file_name) == 0:
             file_name = 'Upscayler'
         else:
             file_name = file_name
