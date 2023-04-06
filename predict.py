@@ -77,17 +77,17 @@ class Predictor(BasePredictor):
             print("running without face enhancement")
             output, _ = self.upsampler.enhance(img, outscale=scale)
            
-    if file_extension == 'auto':
-        # Get the original file extension
-        _, ext = os.path.splitext(str(image))
-        extension = ext[1:]
-    else:
-        extension = file_extension
-    if len(file_name) == 0:
-        file_name = 'Upscayler'
-    else:
-        file_name = file_name
+            if file_extension == 'auto':
+                # Get the original file extension
+                _, ext = os.path.splitext(str(image))
+                extension = ext[1:]
+            else:
+                extension = file_extension
+            if len(file_name) == 0:
+                file_name = 'Upscayler'
+            else:
+                file_name = file_name
                 
-    save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
-    cv2.imwrite(save_path, output)
-    return Path(save_path)
+            save_path = os.path.join(tempfile.mkdtemp(), file_name + '.' + extension)
+            cv2.imwrite(save_path, output)
+            return Path(save_path)
