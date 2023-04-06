@@ -67,6 +67,8 @@ class Predictor(BasePredictor):
             
     ) -> Path:
         img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
+        
+        upscale = scale
 
         extension = ''
         if file_extension == 'auto':
