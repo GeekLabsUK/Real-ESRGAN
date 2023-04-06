@@ -73,11 +73,11 @@ class Predictor(BasePredictor):
             extension = ext[1:]
         else:
             extension = file_extension
-        if not file_name:
+        if file_name == '':
             file_name = 'Upscayler'
         else:
             file_name = file_name
-            
+
         if face_enhance:
             print("running with face enhancement")
             self.face_enhancer.upscale = scale
