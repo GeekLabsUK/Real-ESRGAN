@@ -66,9 +66,7 @@ class Predictor(BasePredictor):
         ),
             
     ) -> Path:
-        img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
-        
-        upscale = scale
+        img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED) 
 
         extension = ''
         if file_extension == 'auto':
@@ -82,7 +80,7 @@ class Predictor(BasePredictor):
         
         if face_enhance:
             print("running with face enhancement")
-            self.face_enhancer.upscale = scale            
+            self.face_enhancer.upscale = int(scale)            
             _, _, output = self.face_enhancer.enhance(
                 img, has_aligned=False, only_center_face=False, paste_back=True
             )
