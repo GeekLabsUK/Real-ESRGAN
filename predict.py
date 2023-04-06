@@ -56,7 +56,7 @@ class Predictor(BasePredictor):
         # added file extention
         file_extension: str = Input(
             description="File extension output",
-            choices="auto, jpeg, png",
+            choices=["auto", "jpeg", "png"],
             default="auto",
         ),
         # added file name
